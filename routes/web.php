@@ -29,7 +29,7 @@ Route::controller(CandidateController::class)->prefix('candidato')->middleware([
     Route::get('/paginacao', function () {
         return view('candidato.pagination');
     })->name('pagination');
-    //Route::get('/lista', 'index')->name('index');
+    Route::get('/lista', 'index')->name('index');
     Route::get('/all', 'allData')->name('all');
     Route::get('/editarCandidato/{id}', 'edit')->name('edit');
     Route::put('/atualizarCandidato/{id}', 'update')->name('update');
@@ -45,7 +45,7 @@ Route::controller(VoterController::class)->prefix('eleitor')->middleware(['auth'
     Route::get('/paginacao', function () {
         return view('eleitor.pagination');
     })->name('pagination');
-    //Route::get('/lista', 'index')->name('index');
+    Route::get('/lista', 'index')->name('index');
     Route::get('/cadastro', 'create')->name('create');
     // Route::get('/eleitorVotar', 'createVerific')->name('create.verific');
     // Route::put('/irVotar', 'verificVoter')->name('store.verific');
