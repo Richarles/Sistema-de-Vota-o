@@ -18,14 +18,14 @@ class Modal extends Component
      *
      * @var string
      */
-    //public $code;
+    public $id;
 
     /**
      * The alert message.
      *
      * @var string
      */
-    public $item;
+    //public $item;
 
     /**
      * The alert message.
@@ -40,11 +40,11 @@ class Modal extends Component
      * @param  string  $id
      * @return void
      */
-    public function __construct($title,$item)
+    public function __construct($title,$id)
     {
         $this->title = $title;
-        //$this->code = $code;
-        $this->$item = $item;
+        $this->id = $id;
+        //$this->$item = $item;
     }
 
     /**

@@ -1,10 +1,7 @@
 @extends('layout.app')
-
 @section('content')
-
 <div class="card o-hidden border-0 shadow-lg my-5">
     <div class="card-body p-0">
-        <!-- Nested Row within Card Body -->
         <div class="row">
             <div class="col-lg-5 d-none d-lg-block bg-register-image"></div>
             <div class="col-lg-7">
@@ -48,6 +45,7 @@
             data: dados,
             success: function (data) {
                 $('.dados').html(data);
+
                 Swal.fire({
                                 position: 'top-end',
                                 icon: 'success',
@@ -55,13 +53,10 @@
                                 showConfirmButton: false,
                                 timer: 1500
                           })
-                //var response = $.parseJSON(data.responseText);
-                //$('#alert').text(data.success).addClass('alert alert-primary');
-                //console.log(data.success);
             },
             error: function (reject) {
                 var response = $.parseJSON(reject.responseText);
-                //console.log(response.errors);
+                
                 if($.isEmptyObject(response.errors) == false) {
                     $.each(response.errors,function(key,val){
                             $('#'+key+"_error").text(val[0]); 

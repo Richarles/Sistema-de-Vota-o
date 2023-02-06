@@ -1,5 +1,4 @@
 @extends('layout.app')
-
 @section('content')
 <style>
     .checkedCandidateTrue{
@@ -24,7 +23,6 @@
             <div class="input-group">
                 <input type="text" class="form-control" id="nameCandidate" name='nameCandidate' aria-label="Text input with dropdown button">
                 <input type="hidden" id="page" name="page" value="0"> 
-                {{-- <input type="hidden" id="name" name="name" value=" ">  --}}
                 <div class="input-group-append">
                     <select class="form-select" name="select" id="select" aria-label="Default select example">
                         <option value="null">Todos Candidatos</option>
@@ -34,9 +32,7 @@
                     </select>
                 </div>
             </div>
-            {{-- <input type="submit" id="ok" value="aqui Ok"> --}}
         </form>
-        <!-- Nested Row within Card Body -->
         <div class="row">
             <div class="col-lg-5 d-none d-lg-block bg-register-image"></div>
             <div class="col-lg-7">
@@ -44,23 +40,19 @@
                     <div class="text-center">
                         <h1 class="h4 text-gray-900 mb-4">Lista de Candidatos</h1>
                     </div>
-                    <div class="container text-center" id="listAjax">
-                        
+                    <div class="container text-center" id="listAjax">  
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
-
 <script>
     $(function() {
         loadData(0);
     });
 
     $( "#select" ).on('change',function( event ) {
-        //alert( "Handler for .submit() called." );
         event.preventDefault();
 
         var datas = $('#form').serialize();
@@ -69,39 +61,33 @@
     });
 
     $(document).on('click','.pagination a',function(e) {
-     e.preventDefault();
-     var pageHref = $(this).attr('href').split('page=')[1];
-     var select = $( "#select" ).val();
+        e.preventDefault();
+        
+        var pageHref = $(this).attr('href').split('page=')[1];
+        var select = $( "#select" ).val();
 
-     loadData(pageHref);
+        loadData(pageHref);
     });
 
     function loadData(page,tf = null) {
         $('#page').val(page);
-        //$( "#select" ).val();
-        //$('#select').val(tf);
         $('#nameCandidate').val();
-        console.log('pagina='+page,'opcão='+tf);
         
-
         var name = $('#nameCandidate').val();
         var pages = $('#page').val();
 
         if (tf == null) {
             var datas = $('#form').serialize();
-         } else {
-             var datas = {name,pages,tf};
-         }
-
-        // var datas = {name,pages,tf};
-        console.log(datas);
+        } else {
+            var datas = {name,pages,tf};
+        }
+        
         $.ajax({
             method	: 'GET',
             url     : "{{ route('candidate.index') }}",
             data: datas,
             success	: function(html) {
                 $('#listAjax').html(html);
-                console.log(html);
             },
             error: function (error) {
                 console.log(error);

@@ -1,5 +1,4 @@
 @extends('layout.app')
-
 @section('content')
 <style>
     .fa-edit{
@@ -20,7 +19,6 @@
             <div class="input-group">
                 <input type="text" class="form-control" id="nameVoter" name='nameVoter' aria-label="Text input with dropdown button">
                 <input type="hidden" id="page" name="page" value="0"> 
-                {{-- <input type="hidden" id="name" name="name" value=" ">  --}}
                 <div class="input-group-append">
                     <select class="form-select" name="select" id="select" aria-label="Default select example">
                         <option value="null">Todos Eleitores</option>
@@ -30,9 +28,7 @@
                     </select>
                 </div>
             </div>
-            {{-- <input type="submit" id="ok" value="aqui Ok"> --}}
         </form>
-        <!-- Nested Row within Card Body -->
         <div class="row">
             <div class="col-lg-5 d-none d-lg-block bg-register-image"></div>
             <div class="col-lg-7">
@@ -40,23 +36,19 @@
                     <div class="text-center">
                         <h1 class="h4 text-gray-900 mb-4">Lista de Eleitores</h1>
                     </div>
-                    <div class="container text-center" id="listAjax">
-                        
+                    <div class="container text-center" id="listAjax">  
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
-
 <script>
 $(function() {
         loadData(0);
-    });
+});
 
 $( "#select" ).on('change',function( event ) {
-    //alert( "Handler for .submit() called." );
     event.preventDefault();
 
     var datas = $('#form').serialize();
@@ -66,6 +58,7 @@ $( "#select" ).on('change',function( event ) {
 
 $(document).on('click','.pagination a',function(e) {
     e.preventDefault();
+
     var pageHref = $(this).attr('href').split('page=')[1];
     var select = $( "#select" ).val();
 
@@ -74,12 +67,8 @@ $(document).on('click','.pagination a',function(e) {
 
 function loadData(page,tf = null) {
         $('#page').val(page);
-        //$( "#select" ).val();
-        //$('#select').val(tf);
         $('#nameVoter').val();
-       // console.log('pagina='+page,'opcão='+tf);
         
-
         var name = $('#nameCandidate').val();
         var pages = $('#page').val();
 
@@ -89,8 +78,6 @@ function loadData(page,tf = null) {
               var datas = {name,pages,tf};
           }
 
-        // var datas = {name,pages,tf};
-        console.log(datas);
         $.ajax({
             method	: 'GET',
             url     : "{{ route('voter.index') }}",
@@ -105,18 +92,18 @@ function loadData(page,tf = null) {
         });
     }
 
-    $(document).on('click','#showVoter', function () {
+$(document).on('click','#showVoter', function () {
     var hrf = $(this).attr('href')
 
     $.ajax({
             method	: 'GET',
             url     : hrf,
             success	: function(data) {
-                console.log(data);
                 $("#showName").text(data.first_name+' '+data.last_name);
                 $("#showContact").text(data.contact);
                 $("#showEmail").text(data.email);
                 $("#showDateNasc").text(data.date_birth);
+
                 if (data.voted == true) {
                     $("#showVoted").text('sim');
                 } else {
@@ -126,11 +113,9 @@ function loadData(page,tf = null) {
                 $('#showModal').modal('show');
             },
             error: function (error) {
-                //console.log(error);
+                console.log(error);
             }
     });
 });
-
-
 </script>
 @endsection

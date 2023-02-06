@@ -1,5 +1,4 @@
 @extends('layout.app')
-
 @section('content')
 @foreach ($resultVote as $item)
 <div class="card o-hidden border-0 shadow-lg my-5">

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 
@@ -37,11 +38,25 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        return User::create([
+        $saveUser =  User::create([
                 "name" => $request->name,
                 "email" => $request->email,
                 "password" => Hash::make($request->password)
                 ]);
+
+        if($saveUser){
+            $credentials = $request->validate([
+                'email' => ['required', 'email'],
+                'password' => ['required'],
+            ]);
+    
+           if (Auth::attempt($credentials)) {
+               $request->session()->regenerate();
+    
+               return redirect()->intended('eleitor/cadastro');
+           }
+        }
+
     }
 
     /**

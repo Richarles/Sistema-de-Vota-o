@@ -29,7 +29,7 @@ Route::controller(CandidateController::class)->prefix('candidato')->middleware([
     Route::get('/paginacao', function () {
         return view('candidato.pagination');
     })->name('pagination');
-    Route::get('/lista', 'index')->name('index');
+    //Route::get('/lista', 'index')->name('index');
     Route::get('/all', 'allData')->name('all');
     Route::get('/editarCandidato/{id}', 'edit')->name('edit');
     Route::put('/atualizarCandidato/{id}', 'update')->name('update');
@@ -45,7 +45,7 @@ Route::controller(VoterController::class)->prefix('eleitor')->middleware(['auth'
     Route::get('/paginacao', function () {
         return view('eleitor.pagination');
     })->name('pagination');
-    Route::get('/lista', 'index')->name('index');
+    //Route::get('/lista', 'index')->name('index');
     Route::get('/cadastro', 'create')->name('create');
     // Route::get('/eleitorVotar', 'createVerific')->name('create.verific');
     // Route::put('/irVotar', 'verificVoter')->name('store.verific');
@@ -61,19 +61,16 @@ Route::controller(VotingController::class)->prefix('Votar')->name('voting.')->gr
     Route::get('/lista/eleitores', 'index')->name('index');
     Route::post('/votarcandidatos', 'store')->name('store');
     Route::put('/salvarvotos/{ed}/{id}', 'storeVotes')->name('store.votes');
-    //Route::post('/search/{id}', 'search')->name('search');
     Route::get('/createcandidatos', 'create')->name('create');
     Route::get('/resultado', 'showResult')->name('show.votes')->middleware('auth');//retirar o middlewar apos a votação
     Route::get('/Detalhe/Eleitor/{id}', 'show')->name('show');
     Route::get('/eleitorVotar', 'createVerific')->name('create.verific');
     Route::any('/irVotar', 'verificVoter')->name('store.verific');
-    //Route::any('/periodo', 'datesubscriptCandidate')->name('store.datesubscriptCandidate');
-    //Route::get('/periododasinscricoes', 'getDateAdd')->name('getDateAdd');
 });
 
 Route::controller(UserController::class)->prefix('usuario')->name('user.')->group(function () {
     Route::get('/cadastro', 'create')->name('create');
-    Route::get('/edicao/{id}', 'edit')->name('edit');
+    Route::get('/edicao/{id}', 'edit')->name('edit')->middleware('auth');;
     Route::post('/salvar', 'store')->name('store');
 });
 
@@ -83,13 +80,3 @@ Route::controller(LoginController::class)->prefix('login')->name('login.')->grou
     Route::any('/sair', 'logout')->name('logout');
 });
 //Route::get('/listaCandidatos/{id}', [VoterController::class, 'index']);
-
-// Route::middleware([
-//     'auth:sanctum',
-//     config('jetstream.auth_session'),
-//     'verified'
-// ])->group(function () {
-//     Route::get('/dashboar', function () {
-//         return view('policy');
-//     })->name('dashboard');
-// });
