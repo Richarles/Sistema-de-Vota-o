@@ -18,7 +18,7 @@
     <div class="card-body p-0">
         <form method="GET" id="form"> 
             @php
-               $filterSelect=['first_Name'=>'firstName','last_Name'=>'lastName','telephone'=>'contact','email'=>'email']
+               $filterSelect=['first_Name'=>'firstName','last_Name'=>'lastName','telephone'=>'contact','email'=>'email','qualified'=>'Habilitados']
             @endphp
             <div class="input-group">
                 <input type="text" class="form-control" id="nameCandidate" name='nameCandidate' aria-label="Text input with dropdown button">
@@ -34,8 +34,8 @@
             </div>
         </form>
         <div class="row">
-            <div class="col-lg-5 d-none d-lg-block bg-register-image"></div>
-            <div class="col-lg-7">
+            {{-- <div class="col-lg-5 d-none d-lg-block bg-register-image"></div> --}}
+            <div class="col-lg">
                 <div class="p-5">
                     <div class="text-center">
                         <h1 class="h4 text-gray-900 mb-4">Lista de Candidatos</h1>

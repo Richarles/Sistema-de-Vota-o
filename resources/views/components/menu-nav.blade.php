@@ -39,10 +39,11 @@
           </li>
           <li class="nav-item">
             @include('components.nav-li', [ 'name'    => 'Votação',
-                                            'list'    => 'Lista de Votação',
-                                            'add'     => route('voting.create'),
-                                            'index'   => route('voting.index',[Auth::user()->id]),
-                                            'addName' => 'Adicionar Candidatos',
+                                            'list'    => 'Votos dos Candidatos',
+                                            'add'     => '',
+                                            //'index'   => route('voting.index',[Auth::user()->id]),
+                                            'index'   => route('voting.show.votes'),
+                                            'addName' => '',
                                           ])
           </li>
         </ul>

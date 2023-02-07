@@ -106,9 +106,9 @@ class VotingController extends Controller
      */
     public function storeVotes($ed, $id)
     {
-          $this->voter->where('id',$ed)->update([
-             'voted' => true,
-         ]);
+        $this->voter->where('id',$ed)->update([
+            'voted' => true,
+        ]);
         
         $this->votingService->countVoto($id);        
     }

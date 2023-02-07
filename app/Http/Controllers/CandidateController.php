@@ -5,16 +5,18 @@ namespace App\Http\Controllers;
 use App\Http\Requests\FormCandidateRequest;
 use App\Http\Requests\UpdateCandidateRequest;
 use App\Models\candidate;
+use App\Models\CountVote;
 use App\Services\CandidateService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 
 class CandidateController extends Controller
 {
-    public function __construct(candidate $candidate,CandidateService $candidateService)
+    public function __construct(candidate $candidate,CandidateService $candidateService,CountVote $countVote)
     {
         $this->candidate = $candidate;
         $this->candidateService = $candidateService;
+        $this->countVote = $countVote;
     }
     /**
      * Display a listing of the resource.
@@ -68,9 +70,16 @@ class CandidateController extends Controller
     public function checkedCandidate($id)
     {
         $idCandidate = $this->candidate->find($id);
-       
+
         $idCandidate->update(['checked' => $idCandidate->checked == false ? true : false]);
-        
+
+        if($idCandidate->checked == true){
+            $this->countVote->updateOrCreate([
+                'candidate_id' => $idCandidate->id,
+                'votes' => 0
+            ]);
+        }
+
         return response()->json($idCandidate);
     }
 

@@ -15,6 +15,8 @@ class CandidateService
             return $query->where('contact',$data['nameCandidate']);
         })->when($data['nameCandidate'] &&  $data['select'] == 'email', function ($query) use ($data) {
             return $query->where('email',$data['nameCandidate']);
+        })->when($data['select'] == 'qualified', function ($query) use ($data) {
+            return $query->where('checked',true);
         })->paginate(2);
         
         return $candidates;

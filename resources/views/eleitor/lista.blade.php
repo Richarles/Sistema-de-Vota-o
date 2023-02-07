@@ -1,11 +1,33 @@
-@foreach ($listVoter as $item)
+{{-- @foreach ($listVoter as $item)
             <div class="row listVoter" id="name_{{$item->id}}">
                 <div class="col-6">{{ $item->first_name }}</div>
                 <div class="col-2"><a href="{{ route('voter.edit',$item->id) }}"><i class='fas fa-edit'></i></a></div>
                 <div class="col-2"><a id="user" class="deleteVoter" href="{{ route('voter.delete',$item->id) }}" data-token="{{ csrf_token() }}" data-id="{{ $item->id }}"><i class='fas fa-trash'></i></a></div>
                 <div class="col-2"><a id="showVoter" href="{{ route('voter.show',$item->id) }}" data-toggle="modal" data-target="#showModal{{$item->id }}" ><i class="fa fa-eye"></i></a></div>
             </div>
-@endforeach
+@endforeach --}}
+<table class="table">
+    <thead>
+        <tr>
+            @foreach (['Nome','Editar','Excluir','Visualizar'] as $key => $title)
+                <th scope="col">{{ $title }}</th>
+            @endforeach
+        </tr>
+    </thead>
+    <tbody>
+        @foreach ($listVoter as $item)
+            <tr class="listVoter" id="name_{{$item->id}}">
+                <td>{{ $item->first_name }} {{ $item->first_name }}</td>
+                <td><a href="{{ route('voter.edit',$item->id) }}"><i class='fas fa-edit'></i></a></td>
+                <td><a id="user" class="deleteVoter" href="{{ route('voter.delete',$item->id) }}" data-token="{{ csrf_token() }}" data-id="{{ $item->id }}"><i class='fas fa-trash'></i></a></td>
+                <td><a id="showVoter" href="{{ route('voter.show',$item->id) }}" data-toggle="modal" data-target="#showModal{{$item->id }}" ><i class="fa fa-eye"></i></a></td>
+            </tr>
+        @endforeach
+    </tbody>
+  </table>
+  {{-- <div class="pagination">
+    {{ $listCandidate->render() }}
+</div> --}}
 <x-modal id="showModal" title="Detalhe Do Eleitor">
     <li class="list-group-item d-flex justify-content-between align-items-center">
         <label>Nome :</label>

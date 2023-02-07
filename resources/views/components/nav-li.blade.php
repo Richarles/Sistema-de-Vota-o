@@ -11,7 +11,7 @@
         <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
         {{ $list }}
     </a>
-    <a class="dropdown-item" data-token="{{ csrf_token() }}" href="{{ $add }}">
+    <a class="dropdown-item @if(!$add && !$addName) d-none @endif" data-token="{{ csrf_token() }}" href="{{ $add }}">
         <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
         {{ $addName }}
     </a>
