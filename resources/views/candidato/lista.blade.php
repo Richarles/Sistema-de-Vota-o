@@ -1,16 +1,3 @@
-{{-- @foreach ($listCandidate as $item)
-    <div class="row delete" id="name_{{$item->id}}">
-        <div class="col-4">{{ $item->first_name }}</div>
-        <div class="col-2"><a href="{{ route('candidate.edit',$item->id) }}"><i class='fas fa-edit'></i></a></div>
-        <div class="col-2"><a id="editCandidate" class="deleteCandidate" href="{{ route('candidate.delete',$item->id) }}" data-token="{{ csrf_token() }}" data-id="{{$item->id}}"><i class='fas fa-trash'></i></a></div>
-        @if ($item->checked == false ) 
-            <div class="col-2"><a id="checkedCandidate_{{$item->id}}" class="checkedCandidate checkedCandidateFalse" href="{{ route('candidate.checked',$item->id) }}" data-token="{{ csrf_token() }}" data-id="{{$item->cheked}}"><i class='fa fa-check'></i></a></div>
-        @else
-            <div class="col-2"><a id="checkedCandidate_{{$item->id}}" class="checkedCandidate checkedCandidateTrue" href="{{ route('candidate.checked',$item->id) }}" data-token="{{ csrf_token() }}" data-id="{{$item->cheked}}"><i class='fa fa-check'></i></a></div>
-        @endif
-        <div class="col-2"><a id="showCandidate" data-toggle="modal" data-target="#showModal{{$item->id }}" href="{{ route('candidate.show',$item->id) }}"><i class="fa fa-eye"></i></a></div>
-    </div> 
-@endforeach --}}
 <table class="table">
     <thead>
         <tr>
@@ -91,7 +78,7 @@ $('.deleteCandidate').on('click', function(e) {
                             'O candidato foi deletado.',
                             'success'
                         )
-                        $("#name_"+data).remove();
+                    $("#name_"+data).remove();
                     },
                     error: function (error) {
                         console.log(error);
@@ -132,6 +119,7 @@ $('.checkedCandidate').on('click', function(e) {
                                 showConfirmButton: false,
                                 timer: 1500
                             })
+                            
                             $("#checkedCandidate_"+data.id).css("color","#2259b5");
                         }
                 },

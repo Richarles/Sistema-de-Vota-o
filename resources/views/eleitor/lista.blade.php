@@ -1,11 +1,3 @@
-{{-- @foreach ($listVoter as $item)
-            <div class="row listVoter" id="name_{{$item->id}}">
-                <div class="col-6">{{ $item->first_name }}</div>
-                <div class="col-2"><a href="{{ route('voter.edit',$item->id) }}"><i class='fas fa-edit'></i></a></div>
-                <div class="col-2"><a id="user" class="deleteVoter" href="{{ route('voter.delete',$item->id) }}" data-token="{{ csrf_token() }}" data-id="{{ $item->id }}"><i class='fas fa-trash'></i></a></div>
-                <div class="col-2"><a id="showVoter" href="{{ route('voter.show',$item->id) }}" data-toggle="modal" data-target="#showModal{{$item->id }}" ><i class="fa fa-eye"></i></a></div>
-            </div>
-@endforeach --}}
 <table class="table">
     <thead>
         <tr>
@@ -24,10 +16,7 @@
             </tr>
         @endforeach
     </tbody>
-  </table>
-  {{-- <div class="pagination">
-    {{ $listCandidate->render() }}
-</div> --}}
+</table>
 <x-modal id="showModal" title="Detalhe Do Eleitor">
     <li class="list-group-item d-flex justify-content-between align-items-center">
         <label>Nome :</label>
@@ -80,11 +69,12 @@ $('.deleteVoter').on('click', function(e) {
                             title: 'Eleitor Excluido com sucesso',
                             showConfirmButton: false,
                             timer: 1500
-                        })
+                    })
+
                     $("#name_"+data).remove();
                 },
                 error: function (error) {
-                console.log(error);
+                    console.log(error);
                 }
             });
         }

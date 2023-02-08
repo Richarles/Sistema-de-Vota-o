@@ -13,12 +13,9 @@
                     <div class="text-center">
                         <h1 class="h4 text-gray-900 mb-4">{{ $item->candidates->vote_number}}</h1>
                     </div>
-                    <form class="user"  method="POST" action="{{ route('voting.store.votes',[$id,$item->id]) }}">
+                    <form class="user" enctype="multipart/form-data">
                         @csrf
-                        @method('PUT') 
-                        <button type="submit" class="btn btn-primary btn-user btn-block">
-                            Votar
-                        </button>
+                        <button type="submit" class="btn btn-primary btn-user btn-block">Votar</button>
                         <hr>
                     </form>
                     <hr> 
@@ -28,4 +25,31 @@
     </div>
 </div>
 @endforeach
+<script>
+    $(document).on('submit', '.user', function (e) {
+        e.preventDefault();
+    
+        $.ajax({
+            headers: {'X-CSRF-TOKEN': '{{ csrf_token() }}'},
+            type: "PUT",
+            url: "{{ route('voting.store.votes',[$id,$item->id]) }}",
+            success: function (data) {
+                Swal.fire({
+                            position: 'top-end',
+                            icon: 'success',
+                            title: 'Voto salvo com Sucesso',
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+
+                setTimeout(() => {
+                    window.location.href="{{ route('voting.create.verific') }}";
+                }, "1500")
+            },
+            error: function (reject) {
+                console.log(reject);
+            }
+        });
+    });
+</script>
 @endsection

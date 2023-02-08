@@ -6,9 +6,7 @@ use App\Http\Requests\FormVoterRequest;
 use App\Http\Requests\UpdateVoterRequest;
 use App\Models\voter;
 use App\Services\VoterService;
-use Exception;
 use Illuminate\Http\Request;
-use Throwable;
 
 class VoterController extends Controller
 {
@@ -49,12 +47,11 @@ class VoterController extends Controller
      */
     public function store(FormVoterRequest $request)
     {
-       $reques = $request->validated();
+        $reques = $request->validated();
         
-       $this->voter->create($reques+['voted' => false]);
+        $this->voter->create($reques+['voted' => false]);
 
-       return response()->json(['success' => 'Eleitor salvo com sucesso.']);
-            
+        return response()->json(['success' => 'Eleitor salvo com sucesso.']);  
     }
 
     /**
@@ -105,10 +102,10 @@ class VoterController extends Controller
      */
     public function destroy($id)
     {
-       $deleteVoter = $this->voter->find($id)->delete();
+        $deleteVoter = $this->voter->find($id)->delete();
 
-       if($deleteVoter) {
+        if($deleteVoter) {
             return response()->json($id);
-         }
+        }
     }
 }

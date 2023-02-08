@@ -30,14 +30,12 @@
             </div>
         </form>
         <div class="row">
-            {{-- <div class="col-lg-5 d-none d-lg-block bg-register-image"></div> --}}
             <div class="col-lg">
                 <div class="p-5">
                     <div class="text-center">
                         <h1 class="h4 text-gray-900 mb-4">Lista de Eleitores</h1>
                     </div>
-                    <div class="container text-center" id="listAjax">  
-                    </div>
+                    <div class="container text-center" id="listAjax"></div>
                 </div>
             </div>
         </div>
@@ -45,7 +43,7 @@
 </div>
 <script>
 $(function() {
-        loadData(0);
+    loadData(0);
 });
 
 $( "#select" ).on('change',function( event ) {
@@ -75,7 +73,7 @@ function loadData(page,tf = null) {
         if (tf == null) {
             var datas = $('#form').serialize();
           } else {
-              var datas = {name,pages,tf};
+            var datas = {name,pages,tf};
           }
 
         $.ajax({

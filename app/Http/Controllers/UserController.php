@@ -39,10 +39,10 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $saveUser =  User::create([
-                "name" => $request->name,
-                "email" => $request->email,
-                "password" => Hash::make($request->password)
-                ]);
+                                    "name" => $request->name,
+                                    "email" => $request->email,
+                                    "password" => Hash::make($request->password)
+                                ]);
 
         if($saveUser){
             $credentials = $request->validate([
@@ -51,12 +51,11 @@ class UserController extends Controller
             ]);
     
            if (Auth::attempt($credentials)) {
-               $request->session()->regenerate();
+                $request->session()->regenerate();
     
-               return redirect()->intended('eleitor/cadastro');
+                return redirect()->intended('eleitor/cadastro');
            }
         }
-
     }
 
     /**

@@ -37,7 +37,7 @@ Route::controller(CandidateController::class)->prefix('candidato')->middleware([
     Route::get('/CadastroCandidato', 'create')->name('create');
     Route::post('/SalvarCandidato', 'store')->name('store');
     Route::any('/checkCandidato/{id}', 'checkedCandidate')->name('checked');
-    Route::get('/ListaCandidato', 'indexVote')->name('index.votacion');
+    //Route::get('/ListaCandidato', 'indexVote')->name('index.votacion');
     Route::get('/detalhe/{id}', 'show')->name('show');
 });
 
@@ -47,8 +47,6 @@ Route::controller(VoterController::class)->prefix('eleitor')->middleware(['auth'
     })->name('pagination');
     Route::get('/lista', 'index')->name('index');
     Route::get('/cadastro', 'create')->name('create');
-    // Route::get('/eleitorVotar', 'createVerific')->name('create.verific');
-    // Route::put('/irVotar', 'verificVoter')->name('store.verific');
     Route::post('/salvar', 'store')->name('store');
     Route::get('/editar/{id}', 'edit')->name('edit');
     Route::put('/atualizar/{id}', 'update')->name('update');
@@ -58,10 +56,10 @@ Route::controller(VoterController::class)->prefix('eleitor')->middleware(['auth'
 
 Route::controller(VotingController::class)->prefix('Votar')->name('voting.')->group(function () {
     Route::any('/listacandidatos/{id?}', 'indexi')->name('indexi');
-    Route::get('/lista/eleitores', 'index')->name('index');
+    //Route::get('/lista/eleitores', 'index')->name('index');
     Route::post('/votarcandidatos', 'store')->name('store');
     Route::put('/salvarvotos/{ed}/{id}', 'storeVotes')->name('store.votes');
-    Route::get('/createcandidatos', 'create')->name('create');
+    //Route::get('/createcandidatos', 'create')->name('create');
     Route::get('/resultado', 'showResult')->name('show.votes')->middleware('auth');//retirar o middlewar apos a votação
     Route::get('/Detalhe/Eleitor/{id}', 'show')->name('show');
     Route::get('/eleitorVotar', 'createVerific')->name('create.verific');

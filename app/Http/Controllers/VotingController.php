@@ -7,7 +7,6 @@ use App\Models\CountVote;
 use App\Models\voter;
 use App\Services\VotingService;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Cache;
 
 class VotingController extends Controller
 {
@@ -34,37 +33,32 @@ class VotingController extends Controller
         return view('votacion.vote',compact('candidateVote','id'));
     }
 
-    public function index(Request $request)
-    {
-        $candidateVote = $this->votingService->listCandidatesChecked();
+    // public function index(Request $request)
+    // {
+    //     $candidateVote = $this->votingService->listCandidatesChecked();
 
-        if ($request->ajax()) {
-            return response()->json($candidateVote);
-        }
+    //     if ($request->ajax()) {
+    //         return response()->json($candidateVote);
+    //     }
 
-        return view('votacion.candidates',compact('candidateVote'));
-    }
+    //     return view('votacion.candidates',compact('candidateVote'));
+    // }
 
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        $candidateVote = $this->candidate->get();
+    // public function create()
+    // {
+    //     $candidateVote = $this->candidate->get();
 
-        return view('votacion.register',compact('candidateVote'));
-    }
+    //     return view('votacion.register',compact('candidateVote'));
+    // }
 
     public function createVerific()
     {
         return view('votacion.select-voter');
-    }
-
-    public function getDateAdd()
-    {
-        return view('votacion.season');
     }
 
     /**
@@ -81,7 +75,8 @@ class VotingController extends Controller
         if($verificVoter){
             return redirect()->route('voting.indexi',['id' => $verificVoter->id]);
         }else{
-            return redirect()->back()->with('status', 'Esse email já foi utilizado para votação');}
+            return redirect()->back()->with('status', 'Esse email já foi utilizado para votação');
+        }
     }
 
     /**
@@ -92,10 +87,10 @@ class VotingController extends Controller
      */
     public function store(Request $request)
     {
-           $this->countVote->updateOrCreate([
-               'candidate_id' => $request->name,
-               'votes' => 0
-           ]);
+        $this->countVote->updateOrCreate([
+            'candidate_id' => $request->name,
+            'votes' => 0
+        ]);
     }
 
     /**
@@ -110,7 +105,9 @@ class VotingController extends Controller
             'voted' => true,
         ]);
         
-        $this->votingService->countVoto($id);        
+        $this->votingService->countVoto($id);
+
+        return response()->json(['success' => 'Candidato salvo com sucesso.']);     
     }
 
     /**

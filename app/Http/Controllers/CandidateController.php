@@ -26,17 +26,18 @@ class CandidateController extends Controller
     public function index(Request $request)
     {
         $listCandidate = $this->candidateService->listCandidate($request);
+        
         if ($request->ajax()) {
             return view('candidato.lista')->with('listCandidate',$listCandidate);
          }
     }
 
-    public function indexVote()
-    {
-        $candidateVote = $this->candidateService->listCandidate();
+    // public function indexVote()
+    // {
+    //     $candidateVote = $this->candidateService->listCandidate();
 
-        return view('votacion.vote',compact('candidateVote'));
-    }
+    //     return view('votacion.vote',compact('candidateVote'));
+    // }
 
     /**
      * Show the form for creating a new resource.

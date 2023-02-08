@@ -3,7 +3,6 @@
 <div class="card o-hidden border-0 shadow-lg my-5">
     <div class="card-body p-0">
         <div class="row">
-            {{-- <div class="col-lg-5 d-none d-lg-block bg-register-image"></div> --}}
             <div class="col-lg">
                 <div class="p-5">
                     <div class="text-center">
@@ -28,9 +27,7 @@
                                        id="exampleInputPassword" placeholder="Senha" value="{{ old('name') ?? ($editUser->password ?? '') }}">
                             </div>
                         </div>
-                            <button type="submit" class="btn btn-primary btn-user btn-block">
-                                Editar
-                            </button>
+                            <button type="submit" class="btn btn-primary btn-user btn-block">Editar</button>
                     </form>
                     <hr>
                 </div>

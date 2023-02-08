@@ -25,9 +25,7 @@
                                 <input type="password" class="form-control form-control-user" name="password" id="exampleInputPassword" placeholder="Senha">
                             </div>
                         </div>
-                            <button type="submit" class="btn btn-primary btn-user btn-block">
-                                Cadastrar
-                            </button>
+                            <button type="submit" class="btn btn-primary btn-user btn-block">Cadastrar</button>
                     </form>
                     <hr>
                     <div class="text-center">

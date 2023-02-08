@@ -3,7 +3,6 @@
 <div class="card o-hidden border-0 shadow-lg my-5">
     <div class="card-body p-0">
         <div class="row">
-            {{-- <div class="col-lg-5 d-none d-lg-block bg-register-image"></div> --}}
             <div class="col-lg">
                 <div class="p-5">
                     <div class="text-center">
@@ -13,9 +12,7 @@
                     <form id="user" class="user" enctype="multipart/form-data"> 
                         @csrf
                         @include('eleitor.form-register')
-                        <button type="submit" id="btnEdit" class="btn btn-primary btn-user btn-block">
-                            Editar
-                        </button>
+                        <button type="submit" id="btnEdit" class="btn btn-primary btn-user btn-block">Editar</button>
                         <hr>
                     </form>
                     <hr>
@@ -50,14 +47,14 @@
                             title: 'Eleitor Atualizado com Sucesso',
                             showConfirmButton: false,
                             timer: 1500
-                          })
+                        })
             },
             error: function (reject) {
                 var response = $.parseJSON(reject.responseText);
 
                 if($.isEmptyObject(response.errors) == false) {
                     $.each(response.errors,function(key,val){
-                            $('#'+key+"_error").text(val[0]); 
+                        $('#'+key+"_error").text(val[0]); 
                     });
                 }
             }

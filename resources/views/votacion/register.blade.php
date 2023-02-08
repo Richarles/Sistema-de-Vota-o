@@ -3,7 +3,6 @@
 <div class="card o-hidden border-0 shadow-lg my-5">
     <div class="card-body p-0">
         <div class="row">
-            {{-- <div class="col-lg-5 d-none d-lg-block bg-register-image"></div> --}}
             <div class="col-lg-8">
                 <div class="p-5">
                     <div class="text-center">
@@ -21,9 +20,7 @@
                                 @endforeach
                             </select>
                         </div>
-                        <button type="submit" class="btn btn-primary btn-user btn-block">
-                            Adicionar
-                        </button>
+                        <button type="submit" class="btn btn-primary btn-user btn-block">Adicionar</button>
                         <hr>
                     </form>
                     <hr>
