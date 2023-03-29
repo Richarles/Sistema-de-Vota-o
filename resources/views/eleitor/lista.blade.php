@@ -9,7 +9,7 @@
     <tbody>
         @foreach ($listVoter as $item)
             <tr class="listVoter" id="name_{{$item->id}}">
-                <td>{{ $item->first_name }} {{ $item->first_name }}</td>
+                <td>{{ $item->first_name }} {{ $item->last_name }}</td>
                 <td><a href="{{ route('voter.edit',$item->id) }}"><i class='fas fa-edit'></i></a></td>
                 <td><a id="user" class="deleteVoter" href="{{ route('voter.delete',$item->id) }}" data-token="{{ csrf_token() }}" data-id="{{ $item->id }}"><i class='fas fa-trash'></i></a></td>
                 <td><a id="showVoter" href="{{ route('voter.show',$item->id) }}" data-toggle="modal" data-target="#showModal{{$item->id }}" ><i class="fa fa-eye"></i></a></td>

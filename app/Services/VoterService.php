@@ -15,7 +15,7 @@ class VoterService
             return $query->where('contact',$data['nameVoter']);
         })->when($data['nameVoter'] &&  $data['select'] == 'email', function ($query) use ($data) {
             return $query->where('email',$data['nameVoter']);
-        })->paginate(1);
+        })->paginate(15);
             
         return $voters;
     }

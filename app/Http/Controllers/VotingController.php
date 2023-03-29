@@ -17,12 +17,13 @@ class VotingController extends Controller
         $this->voter = $voter;
         $this->votingService = $votingService;
     }
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function indexi(Request $request,$id)
+    public function index(Request $request,$id)
     {
         $candidateVote = $this->votingService->votacionCandidate();
 
@@ -32,29 +33,6 @@ class VotingController extends Controller
 
         return view('votacion.vote',compact('candidateVote','id'));
     }
-
-    // public function index(Request $request)
-    // {
-    //     $candidateVote = $this->votingService->listCandidatesChecked();
-
-    //     if ($request->ajax()) {
-    //         return response()->json($candidateVote);
-    //     }
-
-    //     return view('votacion.candidates',compact('candidateVote'));
-    // }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    // public function create()
-    // {
-    //     $candidateVote = $this->candidate->get();
-
-    //     return view('votacion.register',compact('candidateVote'));
-    // }
 
     public function createVerific()
     {

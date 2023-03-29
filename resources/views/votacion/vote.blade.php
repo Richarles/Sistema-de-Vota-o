@@ -4,14 +4,14 @@
 <div class="card o-hidden border-0 shadow-lg my-5">
     <div class="card-body p-0">
         <div class="row">
-            <div class="col-lg-5 d-none d-lg-block "><img src="{{ url("storage/{$item->candidates->profile_photo}") }}" class="img-thumbnail" ></div>
+            <div class="col-lg-5 d-none d-lg-block "><img src="{{ url("storage/{$item->profile_photo}") }}" class="img-thumbnail" ></div>
             <div class="col-lg-7">
                 <div class="p-5">
                     <div class="text-center">
-                        <h1 class="h4 text-gray-900 mb-4">{{ $item->candidates->first_name}}</h1>
+                        <h1 class="h4 text-gray-900 mb-4">{{ $item->first_name}}</h1>
                     </div>
                     <div class="text-center">
-                        <h1 class="h4 text-gray-900 mb-4">{{ $item->candidates->vote_number}}</h1>
+                        <h1 class="h4 text-gray-900 mb-4">{{ $item->vote_number}}</h1>
                     </div>
                     <form class="user" enctype="multipart/form-data">
                         @csrf

@@ -72,13 +72,15 @@ class CandidateController extends Controller
     {
         $idCandidate = $this->candidate->find($id);
 
-        $idCandidate->update(['checked' => $idCandidate->checked == false ? true : false]);
+        $idCandidate->update([
+                                'checked' => $idCandidate->checked == false ? true : false
+                            ]);
 
         if($idCandidate->checked == true){
             $this->countVote->updateOrCreate([
-                'candidate_id' => $idCandidate->id,
-                'votes' => 0
-            ]);
+                                                'candidate_id' => $idCandidate->id,
+                                                'votes' => 0
+                                            ]);
         }
 
         return response()->json($idCandidate);

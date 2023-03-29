@@ -9,34 +9,9 @@ class VotingService
 {
     public function votacionCandidate()
     {
-        $searchCandidates = CountVote::with('candidates')->get();
+        $searchCandidates = candidate::with('countVotes')->where('checked',1)->get();
     
         return $searchCandidates;
-    }
-
-    public function listCandidatesChecked()
-    {
-        $list = CountVote::with('candidates')->get();
-
-        return $list;
-    }
-
-    public function listSearchVoter($data) //Não é necessário
-    {
-        if ($data['name'] && $data['str'] == 'a') {
-            //dd($data);
-            //$searchVoters = CountVote::with('candidates')->where('first_name',$data['name'])->get();
-            $searchVoters = voter::where('first_name',$data['name'])->get();
-            return $searchVoters;
-        }else{
-            //$voters = CountVote::with('candidates')->get();
-            $voters = voter::get();
-            return $voters;
-        }
-        //$searchCandidates = CountVote::with('candidates')->get();
-        //dd($searchCandidates);
-
-       // return $searchCandidates;
     }
 
     public function VerificEmailVoter($data)
