@@ -65,7 +65,7 @@ Route::controller(VotingController::class)->prefix('Votar')->name('voting.')->gr
 
 Route::controller(UserController::class)->prefix('usuario')->name('user.')->group(function () {
     Route::get('/cadastro', 'create')->name('create');
-    Route::get('/edicao/{id}', 'edit')->name('edit')->middleware('auth');;
+    Route::get('/edicao/{id}', 'edit')->name('edit')->middleware('auth');
     Route::post('/salvar', 'store')->name('store');
 });
 
