@@ -12,12 +12,12 @@ use Illuminate\Support\Arr;
 
 class CandidateController extends Controller
 {
-    public function __construct(candidate $candidate,CandidateService $candidateService,CountVote $countVote)
-    {
-        $this->candidate = $candidate;
-        $this->candidateService = $candidateService;
-        $this->countVote = $countVote;
-    }
+    public function __construct(
+        private candidate $candidate,
+        private CandidateService $candidateService,
+        private CountVote $countVote
+    ) {}
+    
     /**
      * Display a listing of the resource.
      *

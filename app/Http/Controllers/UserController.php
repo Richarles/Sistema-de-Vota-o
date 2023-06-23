@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Services\UserService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -10,6 +11,9 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
+    public function __construct(
+        private UserService $userService,
+    ) {}
     /**
      * Display a listing of the resource.
      *
@@ -38,13 +42,9 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $saveUser =  User::create([
-                                    "name" => $request->name,
-                                    "email" => $request->email,
-                                    "password" => Hash::make($request->password)
-                                ]);
+        $registerUser =  $this->userService->registerUser($request);
 
-        if($saveUser){
+        if($registerUser){
             $credentials = $request->validate([
                 'email' => ['required', 'email'],
                 'password' => ['required'],

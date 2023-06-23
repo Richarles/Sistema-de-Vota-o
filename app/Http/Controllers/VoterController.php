@@ -10,11 +10,10 @@ use Illuminate\Http\Request;
 
 class VoterController extends Controller
 {
-    public function __construct(voter $voter,VoterService $voterService)
-    {
-        $this->voter = $voter;
-        $this->voterService = $voterService;
-    }
+    public function __construct(
+        private voter $voter,
+        private VoterService $voterService
+    ) {}
     /**
      * Display a listing of the resource.
      *
